@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浠ｅ竵棰嗗彇Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .info-box {
+            background: #f5f7fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-label {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .info-value {
+            color: #333;
+            font-weight: 600;
+            text-align: right;
+            max-width: 68%;
+            word-break: break-all;
+            overflow-wrap: anywhere;
+        }
+
+        .address-value {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.35;
+        }
+        
+        .wallet-section {
+            margin-bottom: 30px;
+        }
+        
+        .wallet-address {
+            background: #e8f4f8;
+            border: 2px solid #4a90e2;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            word-break: break-all;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+            display: block;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .balance {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .rules {
+            margin: 12px 0 6px;
+            font-size: 13px;
+            color: #4b5563;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 10px;
+                align-items: flex-start;
+            }
+
+            .container {
+                margin-top: 10px;
+                padding: 20px 14px;
+                border-radius: 14px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .subtitle {
+                margin-bottom: 18px;
+                font-size: 13px;
+            }
+
+            .info-box {
+                padding: 14px;
+            }
+
+            .info-item {
+                font-size: 13px;
+            }
+
+            .btn {
+                font-size: 15px;
+                padding: 13px;
+            }
+
+            .balance {
+                font-size: 20px;
+                margin: 14px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>馃巵 浠ｅ竵棰嗗彇</h1>
+        <p class="subtitle">姣忔棰嗗彇 100 STK锛屽厛鍏呭€糂NB鎵嬬画璐瑰悗鍙厤gas棰嗗彇</p>
+        <p class="rules">鎻愮ず锛氬厖鍊兼椂闇€瑕佹敮浠榞as璐癸紱鍏呭€煎畬鎴愬悗锛屽悗缁鍙栦笉闇€瑕乬as璐广€?/p>
+        
+        <div class="info-box">
+            <div class="info-item">
+                <span class="info-label">姣忔棰嗗彇:</span>
+                <span class="info-value">100 STK</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">姣忔璐圭敤:</span>
+                <span class="info-value" id="claimFeeLabel">-- BNB</span>
+            </div>
+        </div>
+        
+        <div class="wallet-section">
+            <div class="wallet-address" id="walletAddress">
+                鏈繛鎺ラ挶鍖?
+            </div>
+            <div class="balance" id="tokenBalance">
+                -- STK
+            </div>
+            <div class="info-item" style="margin-bottom: 10px;">
+                <span class="info-label">BNB鎵嬬画璐逛綑棰?</span>
+                <span class="info-value" id="userBalanceInfo">-- BNB</span>
+            </div>
+            <div class="info-item" style="margin-bottom: 10px;">
+                <span class="info-label">鍓╀綑鍙鍙栨鏁?</span>
+                <span class="info-value" id="remainingClaimsInfo">-- 娆?/span>
+            </div>
+            <button class="btn btn-secondary" id="connectBtn" onclick="connectWallet()">
+                杩炴帴閽卞寘
+            </button>
+            <div style="margin: 15px 0; padding: 15px; background: #f5f7fa; border-radius: 10px;">
+                <div style="margin-bottom: 10px; font-weight: 600; color: #333;">棰勫厖鍊兼墜缁垂锛堝厖鍊奸渶gas锛?</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <button class="btn btn-secondary" id="deposit1Btn" onclick="depositBNB(1)" disabled style="margin: 0; padding: 10px; font-size: 14px;">
+                        鍏呭€?娆?
+                    </button>
+                    <button class="btn btn-secondary" id="deposit2Btn" onclick="depositBNB(2)" disabled style="margin: 0; padding: 10px; font-size: 14px;">
+                        鍏呭€?娆?
+                    </button>
+                    <button class="btn btn-secondary" id="deposit5Btn" onclick="depositBNB(5)" disabled style="margin: 0; padding: 10px; font-size: 14px;">
+                        鍏呭€?娆?
+                    </button>
+                    <button class="btn btn-secondary" id="deposit10Btn" onclick="depositBNB(10)" disabled style="margin: 0; padding: 10px; font-size: 14px;">
+                        鍏呭€?0娆?
+                    </button>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="claimBtn" onclick="claimTokens()" disabled>
+                棰嗗彇(鍏峠as)
+            </button>
+            <button class="btn btn-secondary" id="withdrawBalanceBtn" onclick="withdrawBalance()" disabled>
+                鎻愬彇鎵嬬画璐?
+            </button>
+            <button class="btn btn-secondary" id="refreshBtn" onclick="refreshBalance()" disabled style="margin-top: 10px;">
+                馃攧 鍒锋柊浣欓
+            </button>
+        </div>
+        
+        <div class="status" id="status"></div>
+    </div>
+    
+    <!-- 鍔犺浇鎵撳寘鍚庣殑bundle.js锛堝寘鍚玡thers v5鍜孏SN锛?-->
+    <script src="bundle.js"></script>
+</body>
+</html>
+
